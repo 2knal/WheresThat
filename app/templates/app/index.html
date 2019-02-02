@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +9,10 @@
   <title>WheresThat?</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+  <!-- <script type="text/javascript" src="../bower_components/pathfinding/pathfinding-browser.min.js"></script>
+  <script type="text/javascript" src="dependencies/require.js"></script> -->
   
-  <script src="app/sketch.js"></script>
+  <script src="{% static 'app/js/sketch.js' %}"></script>
 </head>
 <body>
 </body>
