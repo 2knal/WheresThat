@@ -7,13 +7,51 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>WheresThat?</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
-  <!-- <script type="text/javascript" src="../bower_components/pathfinding/pathfinding-browser.min.js"></script>
-  <script type="text/javascript" src="dependencies/require.js"></script> -->
+  <link rel = "stylesheet" href = "{% static 'app/css/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  
   
   <script src="{% static 'app/js/sketch.js' %}"></script>
 </head>
 <body>
+  
+  <!-- hi -->
+  <!-- <div id='temp' class='tooltip'>Hover over me
+      <span class="tooltiptext">Tooltip text</span>
+    </div>  -->
+  <input type="text" id="choice_x" class="choice">
+  <input type="text" id="choice_y" class="choice">  
+
+  <div style = "background-color: white">
+  <div class = 'display_form' style = "display:none; float: left;">
+    <div class = 'modal-content'>
+      <div><span style="float: left;" onclick="$('.display_form').hide();" class = 'close mr-3 mt-1'>&times; </span></div>
+      <p>Enter shop name</p>
+      <input type="text" class="shop_name" >
+      <p>Enter shop description</p>
+      <input type="text" class="shop_description">
+    </div>
+  </div>
+  </div>
+  <div class="action-btn drop-down" style="padding-right: 550px; float: right;">
+    <button onclick="open_form()" class = "btn-floating drop-down grey"></button>
+  </div>
+      
+<script type="text/javascript">
+
+  document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.action-btn');
+  var instances = M.FloatingActionButton.init(elems, {
+    direction: 'left',
+    hoverEnabled: false
+  });
+  });
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 </body>
 </html>

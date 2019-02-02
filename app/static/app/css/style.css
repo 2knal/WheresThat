@@ -1,0 +1,75 @@
+.choice {
+    border-radius: 10px;
+
+}
+
+.display_form {
+    padding-left: 10%;
+    position: fixed; 
+    z-index: 1; 
+    top:0%;
+    padding-top: 0%;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.6);
+}
+
+.tooltip {
+    /* position: relative;
+    display: inline-block; */
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+  
+  /* Tooltip text */
+  .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #aaa;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+    .drop-down{
+        opacity: 1;
+        padding-right: 525px;
+  }
+
+  .modal-content{
+    position: absolute;
+    margin:50px;
+    padding: 40px;
+    padding-right: 40px;
+    z-index: 1;
+    border: 10px solid #888;
+    border-color: green;
+    height: 40%;
+    width: 30%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 1s;
+    animation-name: animatetop;
+    animation-duration: 1s;
+}
+@-webkit-keyframes animatetop {
+    from {top:-350px; opacity:0} 
+    to {top:20px; opacity:5}
+}
+
+@keyframes animatetop {
+    from {top:-350px; opacity:0}
+    to {top:20px; opacity:1}
+}
+  
