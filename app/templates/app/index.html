@@ -11,21 +11,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
   <link rel = "stylesheet" href = "{% static 'app/css/style.css' %}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script language="javascript" type="text/javascript" src="{% static 'app/js/spot.js' %}"></script>
+    <script language="javascript" type="text/javascript" src="{% static 'app/js/sketch.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   
   
-  <script src="{% static 'app/js/sketch.js' %}"></script>
+  <!-- <script src="{% static 'app/js/sketch.js' %}"></script> -->
 </head>
-<body>
-  
-  <!-- hi -->
-  <!-- <div id='temp' class='tooltip'>Hover over me
-      <span class="tooltiptext">Tooltip text</span>
-    </div>  -->
-  <input type="text" id="choice_x" class="choice">
-  <input type="text" id="choice_y" class="choice">  
+<body style='background:#e57373'>
 
   <div style = "background-color: white">
   <div class = 'display_form' style = "display:none; float: left;">
@@ -38,20 +38,25 @@
     </div>
   </div>
   </div>
-  <div class="action-btn drop-down" style="padding-right: 550px; float: right;">
-    <button onclick="open_form()" class = "btn-floating drop-down grey"></button>
-  </div>
-      
-<script type="text/javascript">
 
-  document.addEventListener('DOMContentLoaded', function() {
-  var elems = document.querySelectorAll('.action-btn');
-  var instances = M.FloatingActionButton.init(elems, {
-    direction: 'left',
-    hoverEnabled: false
-  });
-  });
-</script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+  <div class="card-panel red lighten-5" style='width: 850px;margin-left:50px;margin-top:50px'>              
+    <div id="canvas">
+      <!-- sketch.js will come here -->
+    </div>
+  </div>
+
+  <div class="action-btn drop-down" style="padding-right: 550px; float: right;">
+      <ul>
+      <li style = "margin-bottom: 20%"><button onclick="blacker()" class = "btn-floating drop-down grey"></button>
+      <li style = "margin-bottom: 20%"><button onclick="greenify()" class = "btn-floating drop-down green"></button>
+      <li style = "margin-bottom: 20%"><button onclick="bluify()" class = "btn-floating drop-down blue"></button>
+      <li style = "margin-bottom: 20%"><button onclick="whiteify()" class = "btn-floating drop-down white"></button>  
+      </ul>
+  </div>
+
+  <script language="javascript" type="text/javascript" src="{% static 'app/js/sketch.js' %}"></script>
+      
 </body>
 </html>
+
