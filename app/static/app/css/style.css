@@ -56,6 +56,8 @@
     -webkit-animation-duration: 1s;
     animation-name: animatetop;
     animation-duration: 1s;
+    left: 50%; /*Add this*/
+    transform: translate(-50%, 0);
 }
 @-webkit-keyframes animatetop {
     from {top:-350px; opacity:0} 

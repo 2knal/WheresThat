@@ -1,5 +1,7 @@
 let shop_characteristics = [];
 
+
+
 // Function to delete element from the array
 function removeFromArray(arr, elt) {
     // Could use indexOf here instead to be more efficient
@@ -9,7 +11,7 @@ function removeFromArray(arr, elt) {
       }
     }
   }
-  
+
   // An educated guess of how far it is between two points
   function heuristic(a, b) {
     var d = dist(a.i, a.j, b.i, b.j);
@@ -21,29 +23,39 @@ function removeFromArray(arr, elt) {
     let cellX, cellY;
     cellX = floor(mouseX/w);
     cellY = floor(mouseY/h);
-    if(((mouseX >= 0 && mouseX < width) || (mouseY >= 0 && mouseY < height)) && grid[cellX][cellY].wall !=true){  
+    if((mouseX >= 0 && mouseX < width) || (mouseY >= 0 && mouseY < height))  {  
+      if(grid[cellX][cellY].wall !=true)
+      {
       console.log(cellX,cellY);
+            //shop_characteristics[].push(cellX);
+            //console.log($('#submit_shop').html());
       
-      //shop_characteristics[].push(cellX);
-      
-      if(selectedColor === 'black'){
-        grid[cellX][cellY].wall = true;
-        fill(0);
-        noStroke();
+        
+        if($('#submit_shop').html() == "Register")
+        {
+          console.log("Almost registered!");          
+          if(selectedColor === 'black' || selectedColor ==='red'){
+            grid[cellX][cellY].wall = true;
+            fill(selectedColor);
+            noStroke();
+          let temp = document.getElementById("shop_name");
+          grid[cellX][cellY].description = shop_characteristics[temp.value];
+          grid[cellX][cellY].name = temp.value;
+          console.log(grid[cellX][cellY]);
+          console.log("Registered!!");
+        }
         ellipse(cellX * w + w / 2, cellY * h + h / 2, w / 2, h / 2);
       }
       else if(selectedColor === '#ffebee'){
         
         fill('#ffebee')
         noStroke()
-        grid[cellX][cellY].wall = false;
-        let temp = document.getElementById("shop_name");
-        grid[cellX][cellY].name = temp.value;
-        
+        console.log(grid[cellX][cellY]);
         rect(cellX * w, cellY * h, w, h);
       }
     }
   }
+}
   let enable = false;
   let sourceCount = 0, destCount = 0;
   
@@ -59,7 +71,7 @@ function removeFromArray(arr, elt) {
         fill(selectedColor);
         noStroke();
         ellipse(cellX * w + w / 2, cellY * h + h / 2, w / 2, h / 2);
-        start = grid[cellX][cellY]
+        start = grid[cellX][cellY];
         // Starting A*
         openSet.push(start)
         console.log(openSet)
@@ -75,8 +87,15 @@ function removeFromArray(arr, elt) {
         console.log('why not')
       }
     }
+    if(grid[cellX][cellY].name != undefined)
+  {
+    $(".shop_name").val(grid[cellX][cellY].name);
+    $(".shop_description").val(grid[cellX][cellY].description[0]);
+    $(".display_form").toggle();
+  }
   }
   
+
   // Color Selector
   let selectedColor = undefined;
   
@@ -105,7 +124,7 @@ function removeFromArray(arr, elt) {
     let can = createCanvas(600, 600);
     can.parent("canvas");
     console.log('A*');
-   
+    background('#ffebee');
     // Grid cell size
     w = width / cols;
     h = height / rows;
@@ -135,7 +154,6 @@ function removeFromArray(arr, elt) {
     astar = true
   }
 
-
   function draw() {
     let current;
 
@@ -155,9 +173,11 @@ function removeFromArray(arr, elt) {
   
       // Did I finish?
       if (current === end) {
-        noLoop();
+        // noLoop();
         console.log("DONE!");
+        astar = false;
         console.log(path)
+        // move();
       }
   
       // Best option moves from openSet to closedSet
@@ -235,7 +255,7 @@ function removeFromArray(arr, elt) {
     // Drawing path as continuous line
     noFill();
     stroke(255, 0, 200);
-    strokeWeight(w / 2);
+    strokeWeight(w / 4);
     beginShape();
     for (var i = 0; i < path.length; i++) {
       vertex(path[i].i * w + w / 2, path[i].j * h + h / 2);
@@ -263,26 +283,99 @@ function blacker(){
   console.log(selectedColor);
 }
 
+function redify()
+{
+  selectedColor = 'red'
+  console.log(selectedColor);
+}
 
 $(function()
 {
     $("#submit_shop").click(function(){
       $("#shop_name").attr("disabled",true);
       $("#shop_description").attr("disabled",true);     
-      let temp = document.getElementById("shop_name");
-      shop_characteristics[temp.value] = new Array(0);
-      //shop_characteristics[temp.value].push($("#shop_description").val());
+      
+      
       $("#submit_shop").toggleClass("register_shop");
       let sub_shop = document.getElementById('submit_shop');
       
       if(sub_shop.textContent == "Register")
       {
         $("#submit_shop").html("Submit");
+
         $("#shop_name").attr("disabled",false);
         $("#shop_description").attr("disabled",false); 
-        console.log(shop_characteristics[temp.value]);
       }
       else
+      {
         $("#submit_shop").html("Register");
+        let temp = document.getElementById("shop_name");
+        //if(grid)
+        shop_characteristics[temp.value] = new Array(0);
+        shop_characteristics[temp.value].push($("#shop_description").val());
+        console.log("Created array of ", temp.value);
+        
+      }
   });                       
 });
+let prev_name="";
+function mouseMoved()
+{
+  
+  cellX = floor(mouseX/w);
+  cellY = floor(mouseY/h);
+  $(".test").html("nothing");
+  
+  if(grid[cellX][cellY].name != undefined)
+  {
+    console.log(grid[cellX][cellY].name);
+    $(".test").html(grid[cellX][cellY].name);
+    p=createP(grid[cellX][cellY].name);
+
+    
+    if(prev_name!=grid[cellX][cellY].name)
+    {
+    
+    p.position(mouseX+40,mouseY+40);
+    prev_name=grid[cellX][cellY].name;
+    }
+  }
+  else if(grid[cellX][cellY].name == undefined)
+  {
+    removeElements();
+    prev_name = "";
+  }
+
+}
+
+// function shoppingList(){
+//   let item = $('#search');
+
+
+// }
+function search_shop()
+{
+  flag=0;
+  
+  var input=$(".user").val();
+  console.log(input);
+
+  for(var i=0;i<20;i++)
+  {
+    for(var j=0;j<20;j++)
+    {
+      console.log(i,j,grid[i][j].name);
+      if(grid[i][j].name == input && flag==0)
+      {
+        console.log(i,j);
+        bluify();
+        grid[i][j].wall=false;
+        fill(0,0,255);
+        noStroke();
+        ellipse(i * w + w / 2, j * h + h / 2, w / 2, h / 2);
+        end = grid[i][j]
+        flag=1;
+      }
+    }
+  }
+}

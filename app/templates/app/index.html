@@ -28,7 +28,6 @@
        background-color: purple;
      }
   </style>
-  
   <!-- <script src="{% static 'app/js/sketch.js' %}"></script> -->
 </head>
 <body style='background:#e57373'>
@@ -37,10 +36,10 @@
   <div class = 'display_form' style = "display:none; float: left;">
     <div class = 'modal-content'>
       <div><span style="float: left;" onclick="$('.display_form').hide();" class = 'close mr-3 mt-1'>&times; </span></div>
-      <p>Enter shop name</p>
-      <input type="text" class="shop_name" >
-      <p>Enter shop description</p>
-      <input type="text" class="shop_description">
+      <p>Shop name</p>
+      <input class="shop_name" >
+      <p>Shop description</p>
+      <input class="shop_description">
     </div>
   </div>
   </div>
@@ -53,7 +52,7 @@
     </div>
     <span> 
 
-      <button class="btn waves-effect waves-light" type="submit" name="action" style='margin-left:45%;margin-bottom:1%' onclick='startAStar()'>Start</button>
+      <button class="btn waves-effect waves-light" type="submit" name="action" style='z-index:0; margin-left:45%;margin-bottom:1%' onclick='startAStar()'>Start</button>
     </span>
     <!-- <span>
       <button class="btn waves-effect waves-light" type="submit" name="action" style='margin-left:45%' onclick='reset()'>Reset</button>
@@ -62,9 +61,10 @@
   </div>
   
 
-  <div class="action-btn drop-down" style="margin-left: 5%; margin-top:5% ;padding-right:5%; padding-bottom:5%; ">
+  <div class="action-btn drop-down" style="z-index:0; margin-left: 5%; margin-top:5% ;padding-right:5%; padding-bottom:5%; ">
     <ul>
     <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="Obstacle"><button onclick="blacker()" class = "btn-floating drop-down grey" ></button>
+    <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="Shops"><button onclick="redify()" class = "btn-floating drop-down red" ></button>
     <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="User Location"><button onclick="greenify()" class = "btn-floating drop-down green" ></button>
     <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="Shop location"><button onclick="bluify()" class = "btn-floating drop-down blue" ></button>
     <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="Erase"><button onclick="whiteify()" class = "btn-floating drop-down white" ></button>  
@@ -82,7 +82,7 @@
           <input id="shop_name" type="text">
           <p class="card-title" style = "text-align: center;color: black">Shop details:</p>
           <input id="shop_description" type="text">
-          <button class="btn waves-effect waves-light" id="submit_shop" type="submit" name="action">Submit</button>
+          <button style = "z-index:0" class="btn waves-effect waves-light" id="submit_shop" type="submit" name="action">Submit</button>
         </div>
         <div class="card-action">
           
@@ -95,11 +95,11 @@
     <div class="col s12 m6" >
       <div class="card red lighten-5 small" style = "text-align: center;margin-right:30px; margin-top:15%; width: 100%;">
         <div class="card-content white-text">
-          <span class="card-title" style = "text-align: center; color: black">List Items:</span>
-          <input type="text">
+          <span class="card-title" style = "text-align: center; color: black">Search Item:</span>
+          <input class="user" type="text" placeholder='Enter item name'>
           <p class="card-title" style = "color: black"></p>
           <input type="text">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Search</button>
+          <button style = "z-index:0" onclick="search_shop()" class="btn waves-effect waves-light" type="submit" name="action">Search</button>
         </div>     
         <div class="card-action">
           
@@ -109,11 +109,9 @@
   </div>
 </div>
 
-
+<p class="test">Nothing</p>
 </div>
-
-
-
+ 
   <script language="javascript" type="text/javascript" src="{% static 'app/js/sketch.js' %}"></script>
       
 </body>
