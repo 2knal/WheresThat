@@ -16,38 +16,32 @@
     background-color: rgba(0,0,0,0.6);
 }
 
-.tooltip {
-    /* position: relative;
-    display: inline-block; */
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-  }
-  
-  /* Tooltip text */
-  .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #aaa;
+.button {
+    padding: 15px 25px;
+    font-size: 24px;
     text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-   
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
   }
   
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
+  .button:hover {background-color: #3e8e41}
+  
+  .button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
   }
 
-    .drop-down{
-        opacity: 1;
-        padding-right: 525px;
-  }
+  
 
-  .modal-content{
+
+    
+.modal-content{
     position: absolute;
     margin:50px;
     padding: 40px;

@@ -1,3 +1,5 @@
+let shop_characteristics = [];
+
 // Function to delete element from the array
 function removeFromArray(arr, elt) {
     // Could use indexOf here instead to be more efficient
@@ -17,16 +19,13 @@ function removeFromArray(arr, elt) {
   
   function mouseDragged(col){
     let cellX, cellY;
-  
-    if((mouseX >= 0 && mouseX < width) || (mouseY >= 0 && mouseY < height)){
-      cellX = floor(mouseX/w);
-      cellY = floor(mouseY/h);
-  
-      // If selected color is blackish then its an obstacle, so make it white (Use this.wall inSpot objects)
-      // if(selectedColor === 'black' || selectedColor === '#ffebee'){
-      //   grid[cellX][cellY].wall = !grid[cellX][cellY].wall;
-      //   grid[cellX][cellY].show(color(selectedColor));
-      // }
+    cellX = floor(mouseX/w);
+    cellY = floor(mouseY/h);
+    if(((mouseX >= 0 && mouseX < width) || (mouseY >= 0 && mouseY < height)) && grid[cellX][cellY].wall !=true){  
+      console.log(cellX,cellY);
+      
+      //shop_characteristics[].push(cellX);
+      
       if(selectedColor === 'black'){
         grid[cellX][cellY].wall = true;
         fill(0);
@@ -34,11 +33,15 @@ function removeFromArray(arr, elt) {
         ellipse(cellX * w + w / 2, cellY * h + h / 2, w / 2, h / 2);
       }
       else if(selectedColor === '#ffebee'){
+        
         fill('#ffebee')
+        noStroke()
         grid[cellX][cellY].wall = false;
+        let temp = document.getElementById("shop_name");
+        grid[cellX][cellY].name = temp.value;
+        
         rect(cellX * w, cellY * h, w, h);
       }
-      // If its something else, then depending upon selected color do stuff 
     }
   }
   let enable = false;
@@ -77,8 +80,6 @@ function removeFromArray(arr, elt) {
   // Color Selector
   let selectedColor = undefined;
   
-  
-  
   // How many columns and rows?
   var cols = 20;
   var rows = 20;
@@ -101,10 +102,10 @@ function removeFromArray(arr, elt) {
   var path = [];
   
   function setup() {
-    let can = createCanvas(800, 800);
+    let can = createCanvas(600, 600);
     can.parent("canvas");
     console.log('A*');
-  
+   
     // Grid cell size
     w = width / cols;
     h = height / rows;
@@ -126,20 +127,20 @@ function removeFromArray(arr, elt) {
         grid[i][j].addNeighbors(grid);
       }
     }
-  
-  
-    // // Start and end
-    // start = grid[0][0];
-    // end = grid[cols - 1][rows - 1];
-    // start.wall = false;
-    // end.wall = false;
-  
-    // // openSet starts with beginning only
-    // openSet.push(start);
   }
   
+  let astar = false;
+
+  function startAStar(){
+    astar = true
+  }
+
+
   function draw() {
-  
+    let current;
+
+    if (astar){
+
     // Am I still searching?
     if (openSet.length > 0) {
   
@@ -150,7 +151,7 @@ function removeFromArray(arr, elt) {
           winner = i;
         }
       }
-      var current = openSet[winner];
+      current = openSet[winner];
   
       // Did I finish?
       if (current === end) {
@@ -230,12 +231,7 @@ function removeFromArray(arr, elt) {
         temp = temp.previous;
       }
     }
-  
-  
-    // for (var i = 0; i < path.length; i++) {
-      // path[i].show(color(0, 0, 255));
-    //}
-  
+  }
     // Drawing path as continuous line
     noFill();
     stroke(255, 0, 200);
@@ -247,38 +243,46 @@ function removeFromArray(arr, elt) {
     endShape();
   }
   
-  function greenify(){
-    selectedColor = 'green'
-    console.log(selectedColor);
-  }
-  
-  function bluify(){
-    selectedColor = 'blue'
-    console.log(selectedColor);
-  }
-  
-  function whiteify(){
-    selectedColor = '#ffebee'
-    console.log(selectedColor);
-  }
-  
-  function blacker(){
-    selectedColor = 'black'
-    console.log(selectedColor);
-  }
-
-  function open_form()
-{   
-    
-    console.log("click");
-    if(black==1)
-        {
-            fill(100);
-            black=0;
-        }
-        else{
-            fill(100);
-            $('.display_form').show();
-            black=1;   
-        } 
+function greenify(){
+  selectedColor = 'green'
+  console.log(selectedColor);
 }
+
+function bluify(){
+  selectedColor = 'blue'
+  console.log(selectedColor);
+}
+
+function whiteify(){
+  selectedColor = '#ffebee'
+  console.log(selectedColor);
+}
+
+function blacker(){
+  selectedColor = 'black'
+  console.log(selectedColor);
+}
+
+
+$(function()
+{
+    $("#submit_shop").click(function(){
+      $("#shop_name").attr("disabled",true);
+      $("#shop_description").attr("disabled",true);     
+      let temp = document.getElementById("shop_name");
+      shop_characteristics[temp.value] = new Array(0);
+      //shop_characteristics[temp.value].push($("#shop_description").val());
+      $("#submit_shop").toggleClass("register_shop");
+      let sub_shop = document.getElementById('submit_shop');
+      
+      if(sub_shop.textContent == "Register")
+      {
+        $("#submit_shop").html("Submit");
+        $("#shop_name").attr("disabled",false);
+        $("#shop_description").attr("disabled",false); 
+        console.log(shop_characteristics[temp.value]);
+      }
+      else
+        $("#submit_shop").html("Register");
+  });                       
+});

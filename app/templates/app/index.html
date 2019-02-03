@@ -21,7 +21,13 @@
     <script language="javascript" type="text/javascript" src="{% static 'app/js/spot.js' %}"></script>
     <script language="javascript" type="text/javascript" src="{% static 'app/js/sketch.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+      <!--CSS for tooltip-->
+  <style>
+    .backdrop{
+       background-color: purple;
+     }
+  </style>
   
   <!-- <script src="{% static 'app/js/sketch.js' %}"></script> -->
 </head>
@@ -39,21 +45,74 @@
   </div>
   </div>
 
+<div class = "flex-container" style="display:flex">
 
-  <div class="card-panel red lighten-5" style='width: 850px;margin-left:50px;margin-top:50px'>              
-    <div id="canvas">
-      <!-- sketch.js will come here -->
+  <div class="card-panel red lighten-5" id="canvas" style='height:80% ;  width:50%; margin-left:8%; margin-top:2.5%;margin-bottom:2.5%; '>              
+
+    <div style="position: relative; display: inline-block; ">  
+    </div>
+    <span> 
+
+      <button class="btn waves-effect waves-light" type="submit" name="action" style='margin-left:45%;margin-bottom:1%' onclick='startAStar()'>Start</button>
+    </span>
+    <!-- <span>
+      <button class="btn waves-effect waves-light" type="submit" name="action" style='margin-left:45%' onclick='reset()'>Reset</button>
+    </span> -->
+
+  </div>
+  
+
+  <div class="action-btn drop-down" style="margin-left: 5%; margin-top:5% ;padding-right:5%; padding-bottom:5%; ">
+    <ul>
+    <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="Obstacle"><button onclick="blacker()" class = "btn-floating drop-down grey" ></button>
+    <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="User Location"><button onclick="greenify()" class = "btn-floating drop-down green" ></button>
+    <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="Shop location"><button onclick="bluify()" class = "btn-floating drop-down blue" ></button>
+    <li style = "margin-bottom: 20%" data-toggle="tooltip1" title="Erase"><button onclick="whiteify()" class = "btn-floating drop-down white" ></button>  
+    </ul>
+  </div>
+
+
+<div style="display: flex">
+
+  <div class="row" >
+    <div class="col s12 m6" >
+      <div class="card red lighten-5 small" style = "margin-right:30px; margin-top:15%; width: 100%;">
+        <div class="card-content white-text" style="text-align: center;">
+          <span class="card-title" style = "text-align: center; color: black">Shop name:</span>
+          <input id="shop_name" type="text">
+          <p class="card-title" style = "text-align: center;color: black">Shop details:</p>
+          <input id="shop_description" type="text">
+          <button class="btn waves-effect waves-light" id="submit_shop" type="submit" name="action">Submit</button>
+        </div>
+        <div class="card-action">
+          
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="action-btn drop-down" style="padding-right: 400px; float: right;">
-      <ul>
-      <li style = "margin-bottom: 20%"><button onclick="blacker()" class = "btn-floating drop-down grey"></button>
-      <li style = "margin-bottom: 20%"><button onclick="greenify()" class = "btn-floating drop-down green"></button>
-      <li style = "margin-bottom: 20%"><button onclick="bluify()" class = "btn-floating drop-down blue"></button>
-      <li style = "margin-bottom: 20%"><button onclick="whiteify()" class = "btn-floating drop-down white"></button>  
-      </ul>
+  
+  <div class="row" >
+    <div class="col s12 m6" >
+      <div class="card red lighten-5 small" style = "text-align: center;margin-right:30px; margin-top:15%; width: 100%;">
+        <div class="card-content white-text">
+          <span class="card-title" style = "text-align: center; color: black">List Items:</span>
+          <input type="text">
+          <p class="card-title" style = "color: black"></p>
+          <input type="text">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Search</button>
+        </div>     
+        <div class="card-action">
+          
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+
+</div>
+
+
 
   <script language="javascript" type="text/javascript" src="{% static 'app/js/sketch.js' %}"></script>
       

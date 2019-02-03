@@ -3,7 +3,11 @@ function Spot(i, j) {
 
     // Spot color
     this.color = undefined;
-  
+
+    // more like meta data of website
+    this.name = undefined;
+    this.description = undefined;
+
     // Location
     this.i = i;
     this.j = j;
