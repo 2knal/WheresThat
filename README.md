@@ -40,7 +40,7 @@
 
 <br>
 <p align="center">
-<img src ="./assets/WheresThat.gif" width = 300px>
+<img src ="./assets/WheresThat.gif" width = 600px>
 </p>
 
 ------------------------------------------
