@@ -48,7 +48,7 @@
 ### Add-Ons
 
 - [ ] Actual map image feed
-- [ ] Integration with Google Assistant
+- [ ] Integration with Google Assistant!
 
 ------------------------------------------
 
